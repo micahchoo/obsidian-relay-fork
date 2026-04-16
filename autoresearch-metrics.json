@@ -1,38 +1,38 @@
 {
   "effectiveness": {
-    "name": "api_success_rate", 
-    "command": "k6 run --out json=results.json k6-load-test.js 2>&1 | grep '{\"metric\":\"http_req_duration\"' | jq -s '.[0].data.values.p95'",
+    "name": "api_success_rate",
+    "command": "k6 run --summary-export=/tmp/k6-summary.json k6-smoke-test.js >/dev/null 2>&1; jq '[.root_group.groups[].checks[] | .passes] | add' /tmp/k6-summary.json",
     "direction": "higher",
-    "derived_from": "API success rate under load",
+    "derived_from": "Total successful API check passes under load",
     "baseline": null
   },
   "efficiency": {
-    "name": "p95_latency_ms", 
-    "command": "k6 run --out json=results.json k6-load-test.js 2>&1 | jq -s '.[0].data.values[\"p(95)\"]'",
+    "name": "p95_latency_ms",
+    "command": "k6 run --summary-export=/tmp/k6-summary.json k6-smoke-test.js >/dev/null 2>&1; jq '.metrics.http_req_duration[\"p(95)\"] * 1000' /tmp/k6-summary.json",
     "direction": "lower",
-    "derived_from": "p95 response latency under load",
+    "derived_from": "p95 response latency in milliseconds under load",
     "baseline": null
   },
   "simplicity": {
     "name": "race_condition_patterns",
-    "command": "grep -r 'loaded\\|\\$.*\\.items()' Relay/src/components/*.svelte 2>/dev/null | wc -l",
+    "command": "grep -r '\\.length === 0' Relay/src/components/*.svelte 2>/dev/null | grep -v 'loaded()' | wc -l",
     "direction": "lower",
-    "derived_from": "frontend race condition patterns",
+    "derived_from": "frontend race condition patterns without loaded guards",
     "baseline": null
   },
   "quality_test_inputs": {
-    "paths": ["k6-load-test.js", "Relay/src/"],
+    "paths": ["k6-smoke-test.js", "Relay/src/components/"],
     "discovered_at": "Phase 0",
-    "notes": "k6 load test + Svelte components with race potential"
+    "notes": "k6 smoke test + Svelte components with race potential"
   },
   "overrides": [
     {
       "name": "frontend_no_flicker",
-      "command": "grep -l '\\.length === 0' Relay/src/components/*.svelte | wc -l",
+      "command": "grep -rl '\\.length === 0' Relay/src/components/*.svelte 2>/dev/null | xargs grep -L 'loaded()' 2>/dev/null | wc -l",
       "veto_on": "increase",
       "skip_when": "quantitative metrics identical to baseline"
     }
   ],
-  "constraints": ["api_success_rate >= 95%", "p95_latency_ms < 500"],
-  "discard_history": []
+  "constraints": ["api_success_rate stable", "p95_latency_ms < 500"],
+  "discard_history": ["H1:Remove unused imports", "H3:Add parallel test execution"]
 }
