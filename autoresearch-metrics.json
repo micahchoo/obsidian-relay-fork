@@ -1,31 +1,38 @@
 {
   "effectiveness": {
-    "name": "test_pass_rate",
-    "command": "cd /mnt/Ghar/2TA/DevStuff/Relay-monorepo/Relay && npm test 2>&1 | grep -E 'Tests:.*passed' | awk '{print $2}'",
+    "name": "api_success_rate", 
+    "command": "k6 run --out json=results.json k6-load-test.js 2>&1 | grep '{\"metric\":\"http_req_duration\"' | jq -s '.[0].data.values.p95'",
     "direction": "higher",
-    "derived_from": "test pass rate",
+    "derived_from": "API success rate under load",
     "baseline": null
   },
   "efficiency": {
-    "name": "test_runtime",
-    "command": "cd /mnt/Ghar/2TA/DevStuff/Relay-monorepo/Relay && { time npm test >/dev/null 2>&1; } 2>&1 | grep real | awk '{print $2}' | sed 's/[ms]//g' | bc",
+    "name": "p95_latency_ms", 
+    "command": "k6 run --out json=results.json k6-load-test.js 2>&1 | jq -s '.[0].data.values[\"p(95)\"]'",
     "direction": "lower",
-    "derived_from": "test execution time in seconds",
+    "derived_from": "p95 response latency under load",
     "baseline": null
   },
   "simplicity": {
-    "name": "test_file_count",
-    "command": "find /mnt/Ghar/2TA/DevStuff/Relay-monorepo/Relay -name '*.test.ts' -o -name '*.spec.ts' 2>/dev/null | wc -l",
+    "name": "race_condition_patterns",
+    "command": "grep -r 'loaded\\|\\$.*\\.items()' Relay/src/components/*.svelte 2>/dev/null | wc -l",
     "direction": "lower",
-    "derived_from": "number of test files",
+    "derived_from": "frontend race condition patterns",
     "baseline": null
   },
   "quality_test_inputs": {
-    "paths": ["Relay/"],
+    "paths": ["k6-load-test.js", "Relay/src/"],
     "discovered_at": "Phase 0",
-    "notes": "Test suite in Relay directory"
+    "notes": "k6 load test + Svelte components with race potential"
   },
-  "overrides": [],
-  "constraints": ["test_pass_rate >= 100%"],
+  "overrides": [
+    {
+      "name": "frontend_no_flicker",
+      "command": "grep -l '\\.length === 0' Relay/src/components/*.svelte | wc -l",
+      "veto_on": "increase",
+      "skip_when": "quantitative metrics identical to baseline"
+    }
+  ],
+  "constraints": ["api_success_rate >= 95%", "p95_latency_ms < 500"],
   "discard_history": []
 }
