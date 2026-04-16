@@ -1,0 +1,31 @@
+{
+  "effectiveness": {
+    "name": "test_pass_rate",
+    "command": "cd /mnt/Ghar/2TA/DevStuff/Relay-monorepo/Relay && npm test 2>&1 | grep -E 'Tests:.*passed' | awk '{print $2}'",
+    "direction": "higher",
+    "derived_from": "test pass rate",
+    "baseline": null
+  },
+  "efficiency": {
+    "name": "test_runtime",
+    "command": "cd /mnt/Ghar/2TA/DevStuff/Relay-monorepo/Relay && { time npm test >/dev/null 2>&1; } 2>&1 | grep real | awk '{print $2}' | sed 's/[ms]//g' | bc",
+    "direction": "lower",
+    "derived_from": "test execution time in seconds",
+    "baseline": null
+  },
+  "simplicity": {
+    "name": "test_file_count",
+    "command": "find /mnt/Ghar/2TA/DevStuff/Relay-monorepo/Relay -name '*.test.ts' -o -name '*.spec.ts' 2>/dev/null | wc -l",
+    "direction": "lower",
+    "derived_from": "number of test files",
+    "baseline": null
+  },
+  "quality_test_inputs": {
+    "paths": ["Relay/"],
+    "discovered_at": "Phase 0",
+    "notes": "Test suite in Relay directory"
+  },
+  "overrides": [],
+  "constraints": ["test_pass_rate >= 100%"],
+  "discard_history": []
+}

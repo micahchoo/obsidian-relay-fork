@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "index": [
+    {
+      "glob": ".mulch/expertise/*.jsonl",
+      "tier": "expertise"
+    },
+    {
+      "glob": ".claude/**/*.md",
+      "tier": "claude-config"
+    },
+    {
+      "glob": ".seeds/*.jsonl",
+      "tier": "issues"
+    },
+    {
+      "glob": "**/*.md",
+      "tier": "docs",
+      "exclude": [
+        "node_modules/**",
+        ".foxhound/**",
+        "skills/**",
+        "projects/**",
+        "docs/**",
+        ".claude/**",
+        "archive/**"
+      ]
+    },
+    {
+      "source": "file-comments",
+      "tier": "source-comments"
+    },
+    {
+      "source": "git-log",
+      "tier": "git-history"
+    }
+  ]
+}
