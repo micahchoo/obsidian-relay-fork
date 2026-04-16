@@ -1,7 +1,0 @@
-id,description,expected_metric,lever,priority,family
-H1,Remove unused imports to reduce test file size,simplicity,remove_unused_imports,high,code_cleanliness
-H2,Consolidate duplicate test utilities into shared helpers,simplicity,extract_test_helpers,high,code_cleanliness
-H3,Add parallel test execution flag for faster test runs,efficiency,parallel_tests,medium,performance
-H4,Use jest --maxWorkers for optimal parallelism,efficiency,jest_workers,medium,performance
-H5,Add test timeout to catch hanging tests early,efficiency,test_timeout,low,reliability
-H6,Remove console.log statements from test files,simplicity,remove_test_logs,low,code_cleanliness
