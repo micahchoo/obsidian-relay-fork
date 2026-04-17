@@ -1,0 +1,52 @@
+name: Release Relay plugin
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: Relay/package-lock.json
+
+      - name: Install dependencies
+        working-directory: Relay
+        run: npm ci
+
+      - name: Build (production)
+        working-directory: Relay
+        run: npm run release
+
+      - name: Collect release artifacts
+        run: |
+          mkdir -p dist
+          cp Relay/main.js Relay/manifest.json dist/
+          if [ -f Relay/styles.css ]; then cp Relay/styles.css dist/; fi
+          cd dist && zip "../relay-${GITHUB_REF_NAME}.zip" *
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/main.js
+            dist/manifest.json
+            dist/styles.css
+            relay-${{ github.ref_name }}.zip
+          fail_on_unmatched_files: false
+          generate_release_notes: true
