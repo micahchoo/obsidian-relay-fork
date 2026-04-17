@@ -34,6 +34,17 @@ The fork was cut from `Source/` to remove proprietary auth/infra and self-host P
 
 1. **Observable layer is repaired in place, not replaced.** Serves R3. Rules out: migration to Svelte stores, Solid signals, or Nanostores. Rationale: scout #1 found only 1 leaky `filter()` call site in production, `setLoaded()` already notifies correctly (commits `f568e99`/`41b6460`/`e4833bf`), and Postie's transaction bug is guardable with a single internal wrapper. Blast radius of replacement exceeds the bug surface.
 
+   **Bugs resolvable by in-place repair (audit IDs):**
+   - 2.2 (setLoaded no-notify) — already fixed in `f568e99`/`41b6460`/`e4833bf`
+   - O.1 (Postie transaction freeze) — internal `try/finally` in `commitTransaction` + send-side guard
+   - O.2 (Files.add bypasses `ObservableSet.add`) — call `super.add()` instead of `this._set.add()`
+   - O.3 (DerivedMap eager-populate / lazy-subscribe race) — move population into first `subscribe()`
+   - O.4 / 2.10 / 3.9 (DerivedMap predicate-reference leak) — one production call site (`ManageRelay.svelte:954`); replace with stable module-level predicate
+   - 2.6 (SharedFolder `set remote` subscription leak) — unsubscribe-before-append; independent of cascade semantics (see Phase 1 note)
+   - 88 `catch-all` anti-pattern findings touching observables — Phase 4 mechanical work; do not require substrate replacement
+
+   **Bugs that would require substrate replacement:** none identified in current evidence (audit + anti-pattern report). If Phase 1/2 execution reveals bug classes outside the list above (e.g., deadlock in nested notifications, listener-order determinism requirements), this decision must be revisited before Phase 4 begins. Revisit trigger: any bug that cannot be expressed as a change local to `src/observable/*` or `src/Postie.ts`.
+
 2. **Five-phase sequencing: 0→Security, 1→Substrate, 2→Lifecycle, 3→Flow surgery, 4→Hygiene.** Serves R1–R7. Rules out: parallel shotgun across all 429 findings; top-down rewrite; pure bug-triage without structural fixes. Rationale: security must ship first because `/api/superuser/*` is publicly mutable. Substrate must precede lifecycle because lifecycle fixes build on trusted reactivity. Lifecycle must precede flow surgery because per-flow bugs often inherit from lifecycle misbehavior. Hygiene lands last because it requires the test harness.
 
 3. **Obsidian mock harness is a Phase 4 prerequisite, built once and reused.** Serves R6. Rules out: skipping tests for hotspot files, or mocking per-test. Rationale: the five hotspot files (SharedFolder 29, RelayManager 20, LiveViews 19, main 16, SyncFile 15) concentrate 99 anti-patterns, and all couple to Obsidian APIs. Per-test mocks would duplicate ~200 lines across suites.
@@ -121,8 +132,26 @@ Standard tier (flow map from architecture knowledge). Architecture docs absent; 
 ## Phase plan (ordering + scope)
 
 ### Phase 0 — Stop the bleeding (control plane security)
-**PR scope:** `relay-control-plane/` only.
-- Gate `/api/superuser/*` (GET + POST) behind `$apis.requireRecordAuth()` with admin role check.
+**PR scope:** `relay-control-plane/` primarily; paired plugin change in `Relay/src/LoginManager.ts` if OAuth state derivation is altered (scout W2.Q6 confirmed plugin polls by `state.slice(0, 15)` at `LoginManager.ts:582`, must stay in sync with server).
+
+**Endpoint inventory (target state after Phase 0):**
+
+| Path | Method | Current auth | Target auth | Notes |
+|------|--------|--------------|-------------|-------|
+| `/api/collections/relays/self-host` | POST | `requireRecordAuth` | unchanged | UUID fix lands here (relay_mgmt.pb.js:88-89) |
+| `/relay/:guid/check-host` | GET | `requireRecordAuth` | unchanged | — |
+| `/api/accept-invitation` | POST | `requireRecordAuth` | unchanged | try/catch + logging added (relay_mgmt.pb.js:178-224) |
+| `/api/rotate-key` | POST | `requireRecordAuth` | unchanged | non-UUID generation (relay_mgmt.pb.js:126, :249) — review with W2.Q2 |
+| `/token` | POST | `requireRecordAuth` | unchanged | try/catch + logging added |
+| `/file-token` | POST | `requireRecordAuth` | unchanged | try/catch + logging added |
+| `/api/oauth2-redirect` | GET | none | unchanged (public) | state truncation fix (misc.pb.js:84) |
+| `/api/superuser/settings` | GET | **NONE** | admin-only | misc.pb.js:131 |
+| `/api/superuser/oauth` | POST | **NONE** | admin-only | misc.pb.js:162 |
+| `/api/superuser/*` | GET/POST | **NONE** | admin-only | misc.pb.js:178 — enumerate remaining |
+| `/flags`, `/health`, `/whoami`, `/templates/*` | GET | mixed | unchanged | read-only; no mutation |
+
+Items in the plan:
+- Gate `/api/superuser/*` (GET + POST) behind `$apis.requireAdminAuth()` (preferred) or custom admin check (fallback, per W2.Q3).
 - Fix non-UUID generation in `relay_mgmt.pb.js:88-89` (manual splice), `:126`, `:249`, and OAuth state truncation at `:oauth2-redirect`.
 - Add `collectionName` to returned expand records in `relay_mgmt.pb.js:135`, `token.pb.js:87-88`, `file_token.pb.js:83-88`.
 - Add try/catch + logging to `/token`, `/file-token`, `/accept-invitation` silent paths.
@@ -131,15 +160,15 @@ Standard tier (flow map from architecture knowledge). Architecture docs absent; 
 ### Phase 1 — Reactivity substrate hardening
 **PR scope:** `Relay/src/Postie.ts`, `Relay/src/observable/*`, `Relay/src/SharedFolder.ts`, `Relay/src/components/ManageRelay.svelte`.
 - Harden `Postie.commitTransaction` with internal try/finally; ensure `isInTransaction` can never remain true across a thrown exception.
-- Bug 2.6: `SharedFolder.set remote` — unsubscribe old relay before appending new subscription; clear stale entries in `unsubscribes` array.
+- Bug 2.6: `SharedFolder.set remote` — unsubscribe old relay before appending new subscription; clear stale entries in `unsubscribes` array. **Ordering note:** written to tolerate both Phase 2 cascade semantics (current optimistic-cascade and target server-ack-before-cascade). The unsubscribe-before-append fix is scoped to subscription lifetime on the `remote` setter; it does not depend on when or whether the cascade fires.
 - Bug 3.9 / O.4: replace inline arrow predicate at `ManageRelay.svelte:954` with a stable module-level predicate or convert to `derived()` Svelte store. Cache by ID, not function reference.
 - Bug O.2: `SharedFolder.Files` calls `super.add()` instead of bypassing to `this._set.add()`.
 - Bug O.3: move `DerivedMap` eager population from constructor to first `subscribe()`.
-- Dev-only leak detection: instrument `Observable.notifyListeners` to count listener adds/removes, warn if set grows monotonically past threshold.
+- Dev-only leak detection: instrument `Observable.notifyListeners` to count listener adds/removes; warn when (a) listener count on a single `Observable` exceeds 100, OR (b) listener count doubles within a 5-second window on the same instance. Flag off in production builds via `process.env.NODE_ENV !== "production"`.
 
 ### Phase 2 — Lifecycle transactionality
 **PR scope:** `Relay/src/RelayManager.ts`, `Relay/src/HasProvider.ts`, `Relay/src/RemoteSelections.ts`, `Relay/src/LiveViews.ts`; paired server changes in `relay-control-plane/pb_hooks/` if cascade contracts need adjusting.
-- Bug 3.6: `destroyRelay` / `leaveRelay` — server-ack before local cascade. Acceptance: if server call fails, local state unchanged and user sees an error.
+- Bug 3.6: `destroyRelay` / `leaveRelay` — server-ack before local cascade. Acceptance: if the server call throws or returns non-2xx, function early-returns with a typed `RelayOperationError`; the plugin's `Map`/`Set` collections for `relays`, `relay_roles`, `shared_folders` are byte-identical to a pre-call snapshot (regression test compares serialized state); user sees an Obsidian `Notice` carrying the error message.
 - Bug 4.10: `HasProvider.onceConnected` — add 30s timeout; reject with typed error on timeout or provider `destroy`.
 - Bug 4.5: `RemoteSelections` — store awareness listener ref; `.off()` before re-attach on reconnect.
 - Bug 4.12: `LiveViews.clearViewActions` — call `this._viewActions?.$destroy()` before DOM removal.
@@ -148,7 +177,7 @@ Standard tier (flow map from architecture knowledge). Architecture docs absent; 
 ### Phase 3 — Per-flow surgery
 **PR scope:** one PR per flow (1, 2, 3, 4) from the audit.
 - Work remaining audited bugs in audit order within each flow.
-- User-facing feedback added wherever a silent rejection previously existed.
+- User-facing feedback added wherever a silent rejection previously existed: Obsidian `new Notice(message, 5000)` with the thrown error's `.message`; regression test dispatches the failing path and asserts `Notice` constructor was called with non-empty text.
 - `getSubscriptionToken` (bug 3.2): compare response body correctly; the current `!== 200` check on the JSON body is the wrong shape.
 - `leaveRelay` collection name (bug 3.7): verified fixed; add regression test.
 - Login flow silent rejections (1.3–1.8): `.catch` + typed re-throw + user notice.
@@ -161,6 +190,20 @@ Standard tier (flow map from architecture knowledge). Architecture docs absent; 
 3. **Codemod run:** mechanical `.catch(logError)` insertion on 197 fire-and-forget sites. Script lives in `scripts/codemods/fix-fire-and-forget.js`.
 4. **Surgical pass** on 88 catch-all sites: replace with typed error branches or re-throws; no silent returns.
 5. **Delete dead code:** `createRelay` at `RelayManager.ts:2007-2042` (called out in HANDOFF), stale `! Copy N` local entries cleanup.
+
+## Phase exit criteria (revertability)
+
+Each phase must satisfy: "if no subsequent phase ever lands, is the repo in a consistent, shippable state?" Answers below are the invariants each merge must preserve.
+
+| Phase | Shippable alone? | Revert path | Cross-phase dependency |
+|-------|------------------|-------------|------------------------|
+| 0 | **Yes** — pure security/hygiene on server; plugin unchanged except paired OAuth-ID line. Independent of all later phases. | `git revert <sha>` in both repos; PB hot-reloads pb_hooks; no migration. | None. |
+| 1 | **Yes** — substrate hardening is backward-compatible with existing lifecycle code (bug 2.6 fix is local to `set remote`). If Phase 2 never lands, substrate is more defensive, no regression. | `git revert <sha>`; rebuild. Dev-only leak detector gated by `NODE_ENV`. | None; 2.6 fix tolerates both cascade semantics (see bullet above). |
+| 2 | **Yes** — lifecycle transactionality improves recovery. If Phase 3 never lands, flows still work but some silent rejections remain (audit unresolved). User-visible improvement in `destroyRelay`/`leaveRelay`/`onceConnected`. | `git revert <sha>`; rebuild. Regression test for server-ack-before-cascade is isolated. | None. |
+| 3 | **Yes** — per-flow surgery PRs are independent by construction (one flow per PR). Partial landing closes partial audit. | `git revert <flow-N-sha>` targets single flow. | None between sub-PRs; flows 1–4 independent. |
+| 4 | **Mostly** — mock harness and characterization tests are additive (safe). Codemod runs + typed-error refactor are behavioral; must land together with tests or not at all. | Harness + tests: revert is free. Codemod: revert whole sub-PR; tests still pass (they assert behavior, not the `.catch(logError)` shape). | Requires harness (Phase 4 sub-PR 1) before characterization tests (sub-PR 2). Codemod (sub-PR 3) requires tests (sub-PR 2) as safety net. |
+
+**Unified invariant:** No phase merge may leave the golden path worse than it was pre-merge. If a merge regresses the golden path (manual check), it reverts before the next phase starts.
 
 ## Referenced Documents
 
@@ -200,7 +243,7 @@ The five-phase structure satisfies the "3+ independent subsystems → `dispatchi
 
 - Golden path manually verified green
 - `/api/superuser/*` rejects unauthenticated requests (curl test in PR)
-- `grep -r "notifyListeners"` shows no unreachable paths; Postie dev assertion quiet
+- `grep -r "notifyListeners"` shows no unreachable paths; Postie dev assertion emits zero warnings during a full golden-path run (login → create relay → share folder → edit → leave → reopen)
 - 5 hotspot files each show ≥80% coverage in `jest --coverage`
 - Fire-and-forget findings: <50 remaining (from 197)
 - Audit doc `REACTIVITY_BUG_AUDIT.md` has every row annotated "Fixed in <commit>" or "Deferred: <reason>"
