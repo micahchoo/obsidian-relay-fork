@@ -54,17 +54,15 @@
 - **Test:** `curl ... /self-host | jq '.expand.relay_invitations_via_relay[0].collectionName'` → `"relay_invitations"`; similarly for `relay_roles_via_relay`.
 - **Risk:** medium — fix depends on whether the current return uses Record JSON or custom object. Implementer must verify at edit time.
 
-### Item 5 — Gate `/api/superuser/*`
-- **File:** `relay-control-plane/pb_hooks/misc.pb.js:131, 162, 178` (three routes)
-- **Current:** NO auth on `/api/superuser/settings` (GET), `/api/superuser/oauth` (POST), and related.
-- **Change:** depends on W2.Q3:
-  - If `$apis.requireAdminAuth()` exists: wrap all three routes with it as the middleware arg. Idiomatic.
-  - If not: inside each handler, `const info = $apis.requestInfo(c); if (!info.authRecord?.get("admin")) return c.json(403, ...)` — requires W2.Q3 to confirm `admin` field on users schema.
+### Item 5 — Gate `/api/superuser/*` *(RESOLVED: requireAdminAuth)*
+- **File:** `relay-control-plane/pb_hooks/misc.pb.js:131, 162, 178` (three routes; re-verify line numbers at edit time and add any other `/api/superuser/*` routes found in the same file).
+- **Finding (W2.Q3):** `$apis.requireAdminAuth` exists (`types.d.ts:974-975`); targets `_superusers` collection. `users` has no `admin` field (`pb_migrations/1_init.js`) — custom flag path is not needed.
+- **Change:** add third arg to each `routerAdd(...)` as `$apis.requireAdminAuth()`. No schema migration.
 - **Test:**
   - `curl http://localhost:8090/api/superuser/oauth` → 401
-  - `curl -H "Authorization: Bearer <user-token>" ...` → 403
-  - `curl -H "Authorization: Bearer <admin-token>" ...` → 200
-- **Risk:** HIGH if schema missing `admin` field — may need a migration. Prefer `requireAdminAuth` path.
+  - `curl -H "Authorization: Bearer <user-token>" ...` → 401/403
+  - `curl -H "Authorization: Bearer <admin-superuser-token>" ...` → 200
+- **Risk:** low. Single-line change per route. Single-PR path confirmed.
 
 ### Item 6 — Try/catch + logging on silent paths
 - **Files:** `token.pb.js` (wrap handler body), `file_token.pb.js` (wrap handler body + replace empty `catch (_) {}` at :35), `relay_mgmt.pb.js:178-224` (`/accept-invitation`)
