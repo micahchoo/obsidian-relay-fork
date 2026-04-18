@@ -1948,6 +1948,19 @@ export class RelayManager extends HasLogging {
 	}
 
 	async createRelay(name: string): Promise<Relay> {
+		// Fork unlock: when a self-hosted provider exists, route through the
+		// /api/collections/relays/self-host hook endpoint. The plain
+		// `.collection("relays").create()` path skips the server-side
+		// scaffolding that creates relay_roles, relay_invitations (share
+		// key), and storage_quota — without it the new relay has no share
+		// key and the user has no role on it.
+		const selfHostedProvider = this.providers
+			.values()
+			.find((p) => p.selfHosted);
+		if (selfHostedProvider) {
+			return this.createSelfHostedRelay(undefined, selfHostedProvider.id);
+		}
+
 		const guid = uuid();
 		const record = await this.pb?.collection("relays").create<RelayDAO>(
 			{
