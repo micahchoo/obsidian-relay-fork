@@ -1,6 +1,8 @@
 version: '1'
 domains:
   - meta
+  - infrastructure
+  - relay-fork
 governance:
   max_entries: 100
   warn_entries: 150
