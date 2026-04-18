@@ -668,6 +668,11 @@ export class PolicyManager implements IPolicyManager {
 
 		const storageQuota = relay.storageQuota;
 		if (!storageQuota) return true; // No quota means unlimited
+		// Fork unlock: unmetered self-host tenants ship with quota=0 by
+		// design. Treat that as "unlimited" to match ManageRelay's Storage
+		// panel ("Unmetered by Relay") and the per-folder sync toggles.
+		// Without this, attachment uploads fail 0+fileSize <= 0 silently.
+		if (storageQuota.metered === false) return true;
 
 		return storageQuota.usage + fileSize <= storageQuota.quota;
 	}

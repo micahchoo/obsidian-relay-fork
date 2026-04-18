@@ -705,8 +705,13 @@
 	{/each}
 
 	<SettingItem description="" name="">
-		<span class="faint"
-			>{$roles.values().length} of {$relay.userLimit} seats used
+		<span class="faint">
+			{#if $relay.userLimit > 0}
+				{$roles.values().length} of {$relay.userLimit} seats used
+			{:else}
+				{$roles.values().length}
+				{$roles.values().length === 1 ? "member" : "members"}
+			{/if}
 		</span>
 	</SettingItem>
 </SettingGroup>
@@ -808,7 +813,12 @@
 		{/if}
 	{/if}
 </SettingGroup>
-{#if $canManageSubscription}
+<!-- Fork unlock: hide the entire subscription/upgrade block when the relay
+	is backed by a self-hosted provider. The block renders "Plan: " + an
+	Upgrade button that opens buildApiUrl('/subscribe/...') which 404s on
+	self-host PB. Upstream users still see it via the canManageSubscription
+	permission. -->
+{#if $canManageSubscription && !$relay.provider?.selfHosted}
 	<SettingItemHeading name="Plan" />
 	<SettingGroup>
 		{#if $subscription}
