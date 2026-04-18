@@ -433,6 +433,15 @@
 			>
 		</p>
 	{/if}
+	<p class="choose-another">
+		<button
+			class="link link-button"
+			on:click={debounce(() => {
+				plugin.openEndpointConfigurationModal();
+			})}
+			>Use a self-hosted server</button
+		>
+	</p>
 	<WelcomeFooter />
 {/if}
 
