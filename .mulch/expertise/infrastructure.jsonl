@@ -1,0 +1,1 @@
+{"type":"pattern","name":"anti-pattern-untested-churn","description":"anti-pattern cluster [untested-churn]: 2 findings across k6-smoke-test.js(1) k6-load-test.js(1) — sample: 1 commits (6mo), no test file","classification":"tactical","recorded_at":"2026-04-17T03:07:51.233Z","tags":["source:anti-pattern-scan","signal:untested-churn"],"id":"mx-e4312e"}

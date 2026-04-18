@@ -1,0 +1,58 @@
+=== FINDINGS ===
+[catch-all] pb_hooks/file_token.pb.js:35 -- bare catch-all with no specific error type
+[catch-all] pb_hooks/misc.pb.js:119 -- bare catch-all with no specific error type
+[catch-all] pb_hooks/misc.pb.js:154 -- bare catch-all with no specific error type
+[catch-all] pb_hooks/misc.pb.js:205 -- bare catch-all with no specific error type
+[catch-all] pb_hooks/misc.pb.js:88 -- bare catch-all with no specific error type
+[catch-all] pb_hooks/relay_mgmt.pb.js:120 -- bare catch-all with no specific error type
+[catch-all] pb_hooks/relay_mgmt.pb.js:129 -- bare catch-all with no specific error type
+[catch-all] pb_hooks/relay_mgmt.pb.js:159 -- bare catch-all with no specific error type
+[catch-all] pb_hooks/relay_mgmt.pb.js:173 -- bare catch-all with no specific error type
+[catch-all] pb_hooks/relay_mgmt.pb.js:206 -- bare catch-all with no specific error type
+[catch-all] pb_hooks/relay_mgmt.pb.js:23 -- bare catch-all with no specific error type
+[catch-all] pb_hooks/relay_mgmt.pb.js:37 -- bare catch-all with no specific error type
+[catch-all] pb_hooks/token.pb.js:32 -- bare catch-all with no specific error type
+[catch-all] pb_migrations/11_fix_schema_gaps.js:229 -- bare catch-all with no specific error type
+[catch-all] pb_migrations/11_fix_schema_gaps.js:238 -- bare catch-all with no specific error type
+[catch-all] pb_migrations/11_fix_schema_gaps.js:246 -- bare catch-all with no specific error type
+[catch-all] pb_migrations/11_fix_schema_gaps.js:257 -- bare catch-all with no specific error type
+[catch-all] pb_migrations/11_fix_schema_gaps.js:264 -- bare catch-all with no specific error type
+[catch-all] pb_migrations/11_fix_schema_gaps.js:271 -- bare catch-all with no specific error type
+[catch-all] pb_migrations/11_fix_schema_gaps.js:278 -- bare catch-all with no specific error type
+[catch-all] pb_migrations/1_init.js:347 -- bare catch-all with no specific error type
+[untested-churn] pb_hooks/file_token.pb.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_hooks/misc.pb.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_hooks/relay_mgmt.pb.js:0 -- 2 commits (6mo), no test file
+[untested-churn] pb_hooks/token.pb.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_migrations/10_fix_shared_folders.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_migrations/11_fix_schema_gaps.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_migrations/12_remove_used_from_storage_quotas.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_migrations/13_remove_used_by_id.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_migrations/1_init.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_migrations/2_fix_code_exchange_rules.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_migrations/3_fix_auth_rules.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_migrations/4_fix_relay_name_required.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_migrations/5_fix_users_login_rule.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_migrations/6_fix_users_password_auth.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_migrations/7_enable_email_auth.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_migrations/8_allow_user_invitations.js:0 -- 1 commits (6mo), no test file
+[untested-churn] pb_migrations/9_allow_user_relay_roles.js:0 -- 1 commits (6mo), no test file
+
+=== RISK SCORES ===
+pb_hooks/relay_mgmt.pb.js  9  catch-all:7x7 untested-churn:2x1
+pb_migrations/11_fix_schema_gaps.js  9  catch-all:7x7 untested-churn:2x1
+pb_hooks/misc.pb.js  6  catch-all:4x4 untested-churn:2x1
+pb_hooks/file_token.pb.js  3  catch-all:1x1 untested-churn:2x1
+pb_hooks/token.pb.js  3  catch-all:1x1 untested-churn:2x1
+pb_migrations/1_init.js  3  catch-all:1x1 untested-churn:2x1
+pb_migrations/10_fix_shared_folders.js  2  untested-churn:2x1
+pb_migrations/12_remove_used_from_storage_quotas.js  2  untested-churn:2x1
+pb_migrations/13_remove_used_by_id.js  2  untested-churn:2x1
+pb_migrations/2_fix_code_exchange_rules.js  2  untested-churn:2x1
+pb_migrations/3_fix_auth_rules.js  2  untested-churn:2x1
+pb_migrations/4_fix_relay_name_required.js  2  untested-churn:2x1
+pb_migrations/5_fix_users_login_rule.js  2  untested-churn:2x1
+pb_migrations/6_fix_users_password_auth.js  2  untested-churn:2x1
+pb_migrations/7_enable_email_auth.js  2  untested-churn:2x1
+pb_migrations/8_allow_user_invitations.js  2  untested-churn:2x1
+pb_migrations/9_allow_user_relay_roles.js  2  untested-churn:2x1

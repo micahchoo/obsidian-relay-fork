@@ -1,0 +1,29 @@
+# Environment
+.env
+.env.local
+
+# Data
+data/
+relay-data/
+*.db
+*.db-shm
+*.db-wal
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
+*.tgz
+
+# Temp
+*.tmp
+*.log

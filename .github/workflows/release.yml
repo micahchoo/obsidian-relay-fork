@@ -12,10 +12,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout (with submodules)
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive
           fetch-depth: 0
 
       - name: Setup Node
@@ -25,19 +24,40 @@ jobs:
           cache: npm
           cache-dependency-path: Relay/package-lock.json
 
+      - name: Choose artifact source
+        id: src
+        run: |
+          if [ -d "release-assets/${GITHUB_REF_NAME}" ] \
+             && [ -f "release-assets/${GITHUB_REF_NAME}/main.js" ] \
+             && [ -f "release-assets/${GITHUB_REF_NAME}/manifest.json" ]; then
+            echo "mode=prestaged" >> $GITHUB_OUTPUT
+          else
+            echo "mode=build" >> $GITHUB_OUTPUT
+          fi
+
       - name: Install dependencies
+        if: steps.src.outputs.mode == 'build'
         working-directory: Relay
         run: npm ci
 
       - name: Build (production)
+        if: steps.src.outputs.mode == 'build'
         working-directory: Relay
         run: npm run release
 
       - name: Collect release artifacts
         run: |
           mkdir -p dist
-          cp Relay/main.js Relay/manifest.json dist/
-          if [ -f Relay/styles.css ]; then cp Relay/styles.css dist/; fi
+          if [ "${{ steps.src.outputs.mode }}" = "prestaged" ]; then
+            echo "Using pre-staged artifacts from release-assets/${GITHUB_REF_NAME}/"
+            cp "release-assets/${GITHUB_REF_NAME}/main.js"      dist/
+            cp "release-assets/${GITHUB_REF_NAME}/manifest.json" dist/
+            [ -f "release-assets/${GITHUB_REF_NAME}/styles.css" ] && cp "release-assets/${GITHUB_REF_NAME}/styles.css" dist/
+          else
+            echo "Using freshly-built artifacts from Relay/"
+            cp Relay/main.js Relay/manifest.json dist/
+            [ -f Relay/styles.css ] && cp Relay/styles.css dist/
+          fi
           cd dist && zip "../relay-${GITHUB_REF_NAME}.zip" *
 
       - name: Create GitHub Release

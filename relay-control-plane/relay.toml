@@ -1,0 +1,24 @@
+[server]
+# Set this to the address your Obsidian clients use to reach this relay-server.
+# If Obsidian runs on this machine: http://localhost:8081
+# If Obsidian runs on another machine: http://<this-machine-ip-or-hostname>:8081
+url = "http://localhost:8082"
+host = "0.0.0.0"
+port = 8080
+
+[[auth]]
+key_id = "self_hosted"
+public_key = "Ghh7xEawuYV0YbwMt4H-ytN2aRSjpAkTb0vmHFU3y6E"
+# Server default only allows Document + File. Must include Server for pb_hook server-token auth.
+allowed_token_types = ["document", "file", "server", "prefix"]
+
+# Legacy HMAC key — gen_doc_token() on /doc/:id/auth calls sign() which requires a Legacy key.
+# Without this, auth_doc returns 500 "Failed to generate token: CannotSignWithPublicKey".
+[[auth]]
+key_id = "self_hosted_legacy"
+private_key = "DZSahF28WLValka09bgRy7XY1sPOBmoIGmscg9t8"
+allowed_token_types = ["document", "file", "server", "prefix"]
+
+[store]
+type = "filesystem"
+path = "/app/data"

@@ -1,0 +1,7 @@
+=== FINDINGS ===
+[untested-churn] k6-load-test.js:0 -- 1 commits (6mo), no test file
+[untested-churn] k6-smoke-test.js:0 -- 1 commits (6mo), no test file
+
+=== RISK SCORES ===
+k6-load-test.js  2  untested-churn:2x1
+k6-smoke-test.js  2  untested-churn:2x1

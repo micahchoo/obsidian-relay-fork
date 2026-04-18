@@ -1,0 +1,28 @@
+services:
+  relay-server-sh:
+    image: docker.system3.md/relay-server
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./relay.toml:/app/relay.toml:ro
+      - ./relay-data:/app/data
+    restart: unless-stopped
+
+  control-plane:
+    build: .
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./data:/pb/pb_data
+      - ./pb_hooks:/pb/pb_hooks:ro
+    env_file: .env
+    depends_on:
+      relay-server-sh:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8090/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    restart: unless-stopped

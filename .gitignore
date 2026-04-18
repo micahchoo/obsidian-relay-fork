@@ -2,3 +2,5 @@
 Source/
 *HANDOFF*.md
 *handoff*.md
+relay-control-plane/relay-data/
+relay-control-plane/.env
