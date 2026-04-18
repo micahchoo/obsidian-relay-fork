@@ -222,13 +222,23 @@ export class EndpointManager {
 		licenseInfo?: LicenseInfo;
 	}> {
 		const endpointSettings = this.settings.get();
-		
+
 		// If no active tenant is set, use defaults
 		const activeTenant = this.getActiveTenant(endpointSettings);
 		if (!activeTenant) {
 			this.log("No active enterprise tenant configured, using defaults");
 			this._validatedApiUrl = undefined;
 			this._validatedAuthUrl = undefined;
+			return { success: true };
+		}
+
+		// Self-hosted tenants: added with validate=false. No license exists at
+		// /.well-known/relay.md/license; skip the fetch and use the tenant's
+		// explicit authUrl/apiUrl fields directly.
+		if (activeTenant.isValidated === false && activeTenant.authUrl && activeTenant.apiUrl) {
+			this.log("Using self-hosted tenant endpoints (skipping license check)");
+			this._validatedAuthUrl = activeTenant.authUrl;
+			this._validatedApiUrl = activeTenant.apiUrl;
 			return { success: true };
 		}
 
@@ -622,6 +632,16 @@ export class EndpointManager {
 				tenantUrl: tenantUrl,
 				isValidated: false
 			};
+
+			if (!validate) {
+				// Self-hosted tenant: no license to derive endpoints from.
+				// Convention: tenantUrl is both authUrl and apiUrl root.
+				tenantConfig = {
+					...tenantConfig,
+					apiUrl: tenantUrl,
+					authUrl: tenantUrl,
+				};
+			}
 
 			let validationResult: {
 				success: boolean;

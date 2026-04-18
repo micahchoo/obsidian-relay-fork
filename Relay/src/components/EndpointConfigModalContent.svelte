@@ -89,6 +89,10 @@
 		previousTenantUrl = newTenantUrl;
 	}
 
+	// Fork unlock: checkbox to skip the /.well-known/relay.md/license fetch
+	// for tenants that aren't enterprise-licensed (i.e. self-hosted PB).
+	let isSelfHosted = false;
+
 	// Add new tenant
 	async function addTenant() {
 		if (!newTenantUrl.trim()) {
@@ -102,7 +106,9 @@
 		isValidating = true;
 
 		try {
-			const result = await plugin.loginManager.getEndpointManager().addTenant(newTenantUrl);
+			const result = await plugin.loginManager
+				.getEndpointManager()
+				.addTenant(newTenantUrl, !isSelfHosted);
 			
 			if (result.success) {
 				newTenantUrl = "";
@@ -219,14 +225,18 @@
 				class:endpoint-input-invalid={!validationState.isValid || showInputError}
 					title={validationState.error}
 			/>
-			<button 
+			<button
 				class="mod-cta"
 				on:click={addTenant}
 				disabled={isValidating || !newTenantUrl.trim() || !validationState.isValid}
 			>
-				{isValidating ? "Adding..." : "Add Tenant"}
+				{isValidating ? "Adding..." : isSelfHosted ? "Add Self-Hosted" : "Add Tenant"}
 			</button>
 		</div>
+		<label class="self-hosted-toggle" style="display:flex; align-items:center; gap:8px; margin-top:8px; font-size:0.9em;">
+			<input type="checkbox" bind:checked={isSelfHosted} />
+			Self-hosted server (skip license check)
+		</label>
 	</SettingItem>
 
 	<!-- Error Message Display -->
