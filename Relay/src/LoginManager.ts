@@ -241,6 +241,21 @@ export class LoginManager extends Observable<LoginManager> {
 						userId: decodedPayload.id,
 						email: decodedPayload.email,
 					});
+				})
+				.catch((response) => {
+					// Stored auth token is no longer valid (expired, revoked,
+					// or record deleted server-side). Clear auth state rather
+					// than leaving an unhandled promise rejection on plugin
+					// load.
+					if (response?.status === 401 || response?.status === 403) {
+						this.log(
+							"Stored auth token rejected; logging out",
+							response?.status,
+						);
+						this.logout();
+					} else {
+						this.log("authRefresh failed", response);
+					}
 				});
 		}
 	}
