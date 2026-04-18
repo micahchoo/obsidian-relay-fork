@@ -57,7 +57,9 @@ export class SyncSettingsManager extends NamespacedSettings<
 			name: "Other files",
 			description: "Sync unsupported file types",
 			extensions: [],
-			defaultEnabled: false,
+			// Fork unlock: otherTypes is the catch-all fallthrough for unknown
+			// extensions; default true so self-host sync is genuinely allow-all.
+			defaultEnabled: true,
 		},
 	};
 

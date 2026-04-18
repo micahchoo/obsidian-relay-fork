@@ -18,17 +18,21 @@ export interface FeatureFlags {
 	enableKanbanView: boolean;
 }
 
+// Fork unlocks: defaults flipped to `true` for capabilities upstream leaves
+// `false` pending server-side override. Self-host deployments never receive
+// upstream's `applyServerFlags` payload, so local defaults are the only source
+// of truth. See RECOVERY.md "The actual gating mechanism (upstream locks)".
 export const FeatureFlagDefaults: FeatureFlags = {
-	enableDocumentStatus: false,
-	enableNewLinkFormat: false,
+	enableDocumentStatus: true,
+	enableNewLinkFormat: true,
 	enableDeltaLogging: false,
-	enableDocumentHistory: false,
+	enableDocumentHistory: true,
 	enableEditorTweens: false,
 	enableNetworkLogging: false,
-	enableCanvasSync: false,
-	enableVerifyUploads: false,
+	enableCanvasSync: true,
+	enableVerifyUploads: true,
 	enableAutomaticDiffResolution: true,
-	enableDiscordLogin: false,
+	enableDiscordLogin: true,
 	enableSelfManageHosts: true,
 	enableToasts: true,
 	enablePresenceAvatars: true,

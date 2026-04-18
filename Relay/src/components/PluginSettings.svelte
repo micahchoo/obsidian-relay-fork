@@ -168,7 +168,14 @@
 		currentComponent = ManageRemoteFolder;
 	}
 
+	// Fork unlock: creatingRelay flag guards against duplicate-click orphan
+	// storm. Passed to <Relays> so the button disables with "Creating..." for
+	// the duration of the async create call.
+	let creatingRelay = false;
+
 	async function handleCreateRelayEvent(event: CreateRelayEvent) {
+		if (creatingRelay) return;
+		creatingRelay = true;
 		try {
 			history.push({
 				currentRelay,
@@ -180,6 +187,8 @@
 			currentComponent = ManageRelay;
 		} catch (error: any) {
 			handleServerError(error, "Failed to create relay");
+		} finally {
+			creatingRelay = false;
 		}
 	}
 
@@ -311,6 +320,7 @@
 				{subscriptions}
 				{providers}
 				{plugin}
+				{creatingRelay}
 				on:manageRelay={handleManageRelayEvent}
 				on:manageSharedFolder={handleManageSharedFolderEvent}
 				on:manageRemoteFolder={handleManageRemoteFolderEvent}

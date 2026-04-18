@@ -45,6 +45,10 @@ export class Observable<T> extends HasLogging implements IObservable<T> {
 
 	notifyListeners(): void {
 		for (const recipient of this._listeners) {
+			// Fork guard: subscriber Sets can contain nulls after
+			// unsubscribe/notify races; Postie.getFunctionOrigin crashes on
+			// null.name if a null slips through.
+			if (!recipient) continue;
 			PostOffice.getInstance().send(
 				this as unknown as T & IObservable<T>,
 				recipient,

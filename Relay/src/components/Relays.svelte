@@ -29,6 +29,8 @@
 	export let plugin: Live;
 	export let relays: ObservableMap<string, Relay>;
 	export let subscriptions: ObservableMap<string, RelaySubscription>;
+	// Fork unlock: parent signals async create in-flight → disable button.
+	export let creatingRelay: boolean = false;
 
 	const sharedFolders = plugin.sharedFolders;
 
@@ -245,9 +247,10 @@
 	<SlimSettingItem description="" name="">
 		<button
 			class="mod-cta system3-button"
+			disabled={creatingRelay}
 			on:click={debounce(() => handleCreateRelay())}
 		>
-			Create
+			{creatingRelay ? "Creating..." : "Create"}
 		</button>
 	</SlimSettingItem>
 </SettingGroup>
