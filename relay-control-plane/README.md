@@ -1,6 +1,6 @@
 # relay-control-plane
 
-The self-hosted backend for the [Relay plugin fork](../Relay/README-FORK.md). Two services in a single `docker-compose.yml`, swappable for upstream Relay's managed `auth.system3.md` plane.
+The self-hosted backend for the [Relay plugin fork](../Relay/README.md). Two services in a single `docker-compose.yml`, swappable for upstream Relay's managed `auth.system3.md` plane.
 
 > You do not need this directory if you use upstream's managed plane — you pay them for it. You need this directory when you want to run the whole collab stack on your own infrastructure.
 

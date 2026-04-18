@@ -1,211 +1,192 @@
-# Relay 🛰️
+# Relay — Self-Hosted Fork
 
-True **multiplayer mode** for Obsidian. 💃🕺
+A fork of [No-Instructions/Relay](https://github.com/No-Instructions/Relay) that unlocks the plugin's gating for self-hosted deployments. Works with the control plane in [obsidian-relay-fork/relay-control-plane](https://github.com/micahchoo/obsidian-relay-fork/tree/master/relay-control-plane).
 
--   **Collaborate in real time** with live cursors.
--   **Edit offline** and sync seamlessly when you're back on.
--   **Share folders** and manage access to updates.
+Upstream Relay is source-available but leans on a managed PocketBase tenant for feature-flag overrides, storage metering, and enterprise license validation. Pointed at a self-hosted control plane it ships with most capabilities defaulted off because no tier override ever arrives. This fork flips the defaults and patches the corresponding UI/policy gates so self-host users get the whole plugin.
 
-![Relay Product Demo](https://f.system3.md/cdn-cgi/image/format=auto/demo.gif)
-
-Relay is a collaborative editing plugin for Obsidian by [System 3](https://system3.md/). It uses CRDTs to enable snappy, local-first, real-time and asynchronous collaboration.
-
-[Join our Discord](https://discord.system3.md) for support and a good time.
-
-### How does Relay work?
-
-In a nutshell, Relay:
-
-1. **Tracks updates to designated folders**. The plugin uses conflict-free replicated data types (CRDTs) to track updates to folders that you designate within your vault.
-2. **Relays updates.** It sends those updates up to Relay servers 🛰️, which then echo the updates out to all collaborators on the relay.
-3. **Integrates updates.** Your collaborator receives the updates and integrates them seamlessly as they come in.
-
-### What's a CRDT?
-
-Great question. CRDT stands for **conflict-free replicated data type** and it's a technology that's critical to making local-first real-time collaboration work.
-
-> The fundamental idea is this: You have data. This data is stored on multiple replicas. CRDTs describe how to coordinate these replicas to always arrive at a consistent state. [1]
-
-For a great intro and overview, watch the first 10 minutes of this video by Martin Kleppmann. If you want to get into the nitty-gritty, watch the whole thing.
-
-[![Intro to the Modern State of Synchronization](https://f.system3.md/cdn-cgi/image/format=auto,width=600/crdt-explainer-thumnail.png)](https://youtube.com/watch?v=x7drE24geUw)
-
-For more, check out this video: [Intro to the Modern State of Synchronization](https://youtu.be/tSvlvMTHhWY?si=Rp6FepkeS7N6y3zO) by [Kevin Jahns](https://github.com/dmonad). Jahns is the maintainer of [Yjs](https://docs.yjs.dev/), which is the open source CRDT that we use in Relay.
-
-## What can I do with Relay?
-
-Oh, the things you can do.
-
-Here's a video tour:  
-[![Watch the video](https://f.system3.md/cdn-cgi/image/format=auto,width=600/walkthrough-video-thumbnail.png)](https://youtu.be/Ol6zDF5vrZo)
-
-
-### Create a new relay
-
-1. Go to Obsidian settings (gear icon in lower left of Obsidian)
-2. Go to Relay settings (on the left, at the bottom)
-3. Create new relay
-4. Add shared folder(s) to the relay
-
-![Demo - Create a new Relay](https://f.system3.md/cdn-cgi/image/format=auto/create%20a%20new%20relay.gif)
-
-### Add users to the relay by giving them a share key
-
-1. Go to settings for your relay
-2. Grab the share key
-3. Give it to your people
-
-![Demo -Sharing a Relay](https://f.system3.md/cdn-cgi/image/format=auto/sharing%20a%20relay.gif)
-
-### Collaborate to your heart's content
-
--   If you're in a note at the same time, you'll see each others' cursors
--   You can edit the same block at the same time (magic of CRDTs)
--   You can edit offline and it'll all be fine when you come back on (CRDTs ftw)
--   If you hit any bugs or have questions/requests let us know in the [Discord](https://discord.system3.md)
-
-### Kick user from a relay
-
--   Right now anyone with the share key can join the relay
--   So you can kick the user but they could rejoin if they want
--   We'll be adding stricter sharing options in the future
-
-![Demo - Kick a user from a Relay](https://f.system3.md/cdn-cgi/image/format=auto/kick%20user%20from%20a%20relay.webp)
-
-### Join someone else's relay
-
-1. Get their share key
-2. Use it to join their relay
-3. Add the folders you want to your vault
-
-![Demo - Join a Relay](https://f.system3.md/cdn-cgi/image/format=auto/join%20a%20relay.webp)
-
-### Destroy the relay when you're done
-
-If you're the owner of a relay, you can destroy the copy on the server.
-
-If you're a member but not the owner, you can leave the relay (destroy your connection to the server), and you can destroy the local data.
-
-## FAQ
-
-Asked more or less frequently.
-
-### Which file types are supported?
-
-Relay currently has two types of storage, document storage and attachment storage.
-Document storage is backed by our real-time CRDT servers, while Attachments are stored as file blobs.
-
-Document storage:
--   Folders
--   Markdown files
-
-Attachment storage:
--   Images
--   Audio
--   Video
--   PDFs
--   Other files (must be enabled in settings)
-
-
-You need to have available Attachment storage in order to sync images/audio/video/PDFs/etc.
-
-
-### How much does Relay cost?
-
-#### Free ($0)
-- Up to 3 users
-- 2 devices per user
-- Unlimited markdown files
-- No cloud storage (0 MB)
-- Self-hosted deployment
-- Cloud deployment (.md only)
-- BYO Relay Server
-- BYO storage (unmetered, self-host only)
-- Community support
-
-#### Hobby ($5 per month total)
-- Up to 6 users
-- 3 devices per user
-- Unlimited markdown files
-- 10GB cloud storage included
-- Self-hosted deployment
-- BYO Relay Server
-- BYO storage (unmetered, self-host only)
-- Community support
-
-#### Starter ($6 per user per month)
-- Unlimited users
-- 6 devices per user
-- Unlimited markdown files
-- 20GB + 5GB/user cloud storage included
-- Self-hosted deployment
-- BYO Relay Server
-- BYO storage (unmetered)
-- Role-based access control
-- Single sign-on
-- Private Discord
-- Email support
-
-
-We offer discounts for educational use.
-
-
-### Do I need to be online to use Relay?
-
-Relay is local-first -- this means that all of your edits are tracked locally and the server is used to _relay_ the edits to your collaborators. You can work offline and your edits will be merged once you come back online.
-
-### How are edits merged?
-
-We use a **Conflict-Free Replicable Data Types** (CRDTs) provided by the excellent yjs library.
-
-### Is Relay Open Source?
-
-The Obsidian plugin code is MIT licensed (this repo).
-
-The [Relay Server](https://github.com/No-Instructions/y-sweet) is a fork of y-sweet and is MIT licensed. 
-
-Our login, permissions, and billing server code is proprietary.
-
-
-### Can I self-host?
-
-We support "On-Prem" deployment of a Relay Server.
-
-If you self-host your Relay Server on a private network then your users will still perform login and permissions checks through our servers, but they will connect directly to your server. Your content will be completely private and inaccessible by us.
-
-For instructions on hosting your Relay Server on fly.io, see [Relay Server Template](https://github.com/No-Instructions/relay-server-template).
-
-[Join our Discord](https://discord.system3.md) for help on configuring your on-prem deployment.
-
-
-### Who's behind Relay?
-
-Relay is made by [System 3](https://system3.md/). The legal entity behind System 3 is [No Instructions, LLC](http://noinstructions.ai/).
-
-Right now the whole operation is two people:
-
--   Dan, a software engineer who has worked at places like [Planet](http://planet.com/) and [Benchling](https://www.benchling.com/)
--   Matt, a product manager and psychotherapist (in training) who has worked at places like [Meta AI](https://ai.meta.com/meta-ai/), [Lumosity](https://www.lumosity.com/en/), and [Big Health](https://www.bighealth.com/)
-
-
-## Do you have a privacy policy?
-
-Yes: [https://system3.md/Privacy+policy](https://system3.md/Privacy+policy).
-
-
-## How can I make a responsible security disclosure?
-
-Please email security@system3.md
-
-
-## Installing Relay
-
-You can search for `Relay` in the Obsidian Community plugins list,
-or click this [Obsidian Plugin Link](https://obsidian.md/plugins?search=system3-relay).
-
-
-[Join our Discord](https://discord.system3.md)!
+Companion monorepo: [obsidian-relay-fork](https://github.com/micahchoo/obsidian-relay-fork)
+Audit of every gate: [LOCKS.md](../LOCKS.md)
+Recovery context for the v0.7.5 rebase: [RECOVERY.md](../RECOVERY.md)
 
 ---
 
-[1] Intro to CRDTs by Lars Hupel [https://lars.hupel.info/topics/crdt/01-intro/](https://lars.hupel.info/topics/crdt/01-intro/)
+## Install
+
+### Option A — BRAT (recommended for beta testers)
+
+Add the fork as a beta plugin via the [Obsidian BRAT plugin](https://tfthacker.com/BRAT):
+
+1. Install BRAT from *Settings → Community plugins*.
+2. BRAT → *Add beta plugin*.
+3. Paste: `micahchoo/obsidian-relay-fork`
+4. Pick the most recent version (e.g. `v0.7.6-beta.1`).
+
+BRAT reads `manifest-beta.json` from the tagged release, so you'll auto-update as new `-beta.N` tags ship.
+
+### Option B — Manual install from a release
+
+Every tagged release (`v*`) publishes a production build to [GitHub Releases](https://github.com/micahchoo/obsidian-relay-fork/releases). Download `main.js`, `manifest.json`, and `styles.css` (or `relay-<tag>.zip`), then copy into:
+
+```
+<your-vault>/.obsidian/plugins/system3-relay/
+```
+
+Enable **Relay** in *Settings → Community plugins*. The plugin id stays `system3-relay` so upstream and this fork can't coexist in the same vault — pick one per vault.
+
+### Option C — Build from source
+
+```bash
+git clone https://github.com/micahchoo/obsidian-relay-fork.git
+cd obsidian-relay-fork/Relay
+npm install
+npm run release   # production build -> main.js, styles.css
+```
+
+Copy the three artifacts into your vault as above.
+
+Scripts:
+
+| Script            | What it does                                        |
+| ----------------- | --------------------------------------------------- |
+| `npm run dev`     | esbuild watch (dev build, source maps)              |
+| `npm run build`   | Typecheck + esbuild `develop` target                |
+| `npm run release` | Typecheck + esbuild `production` target (minified)  |
+| `npm run beta`    | esbuild `debug` target                              |
+| `npm test`        | Jest                                                |
+| `npm run lint`    | ESLint                                              |
+
+---
+
+## Point the plugin at your control plane
+
+1. Start the control plane (see [relay-control-plane/README](../relay-control-plane/) or the monorepo README).
+2. In Obsidian → *Settings → Relay* the login screen shows OAuth buttons (GitHub / Google / Microsoft). Below the buttons click **"Use a self-hosted server"**.
+3. In the Enterprise Tenant modal:
+   - Paste your control plane URL (e.g. `http://localhost:8090`).
+   - Check **"Self-hosted server (skip license check)"**.
+   - Click **Add Self-Hosted** → **Apply**.
+4. The OAuth provider buttons will switch to the providers configured in your self-hosted PocketBase. Sign in.
+5. Click **Create** to spin up a relay. Scaffolding (storage_quota, relay_role, share_invitation) is created server-side via `/api/collections/relays/self-host`.
+6. Share folders to the new relay. Pass the share key visible in *Manage Relay → Share key* to collaborators; they enter it on their **Join** button in the same panel.
+
+---
+
+## What this fork changes vs upstream
+
+Every patch is a minimal diff against upstream; see `LOCKS.md` for rationale and code anchors. Grouped by concern:
+
+### Self-host flow additions
+
+| Change | Where |
+|---|---|
+| "Use a self-hosted server" link on the login screen | `src/components/LoggedIn.svelte` |
+| "Self-hosted server (skip license check)" checkbox on Enterprise Tenant modal — calls `addTenant(url, false)` so the tenant is accepted without a signed `/.well-known/relay.md/license` JWT | `src/components/EndpointConfigModalContent.svelte` |
+| `EndpointManager.addTenant(validate=false)` now sets `authUrl = apiUrl = tenantUrl` so subsequent login works | `src/EndpointManager.ts` |
+| `EndpointManager.validateAndSetEndpoints` short-circuits license validation when the active tenant is already marked `isValidated=false` with explicit endpoints | `src/EndpointManager.ts` |
+| `RelayManager.createRelay` auto-routes through `createSelfHostedRelay(providerId)` when a `self_hosted=true` provider exists, ensuring server-side scaffolding runs | `src/RelayManager.ts` |
+
+### Upstream feature-flag unlocks
+
+Defaults flipped in `src/flags.ts` (upstream's `applyServerFlags` merges tier-keyed overrides from hosted PB; self-host PB sends nothing so local defaults stand):
+
+```
+enableDocumentStatus   false → true
+enableNewLinkFormat    false → true
+enableDocumentHistory  false → true
+enableCanvasSync       false → true
+enableVerifyUploads    false → true
+enableDiscordLogin     false → true
+```
+
+### Storage-metering unlocks
+
+| Change | Where |
+|---|---|
+| `SyncSettings.otherTypes.defaultEnabled` flipped to `true`; unknown file extensions now sync instead of being silently dropped | `src/SyncSettings.ts` |
+| Per-folder sync toggles (Images / Audio / Videos / PDFs) no longer locked behind "Buy storage" CTA when `storageQuota.metered === false` | `src/components/ManageRemoteFolder.svelte` |
+| `PolicyManager.hasStorageQuota` short-circuits to allow when unmetered — companion to the UI unlock so attachment uploads don't silently fail the `usage + size <= quota` check when `quota=0` | `src/PolicyManager.ts` |
+
+### Data-model fix (invisible-relay / "invalid remote folder")
+
+PocketBase multi-relation fields arrive as `string[]` while the DAO interfaces type them as `string`. Downstream `relays.get(array)` / `users.get(array)` returns undefined → caller either synthesises a stub record (invisible relay) or throws "invalid remote folder".
+
+- `RelayManager._ingest` now runs `normalizePBRelations(record)` keyed by a `PB_RELATION_FIELDS` schema map covering `shared_folders`, `relay_roles`, `shared_folder_roles`, `relay_invitations`, `subscriptions`, `storage_quotas`, `relays`. Coerces `string[]` → first element in place before any collection sees it.
+
+### UI-polish and resilience
+
+| Change | Where |
+|---|---|
+| `LoginManager.refreshToken()` now catches 401/403 from `authRefresh` and triggers `logout()` instead of leaving an unhandled promise rejection on plugin onload | `src/LoginManager.ts` |
+| `Observable.notifyListeners` filters null recipients (Postie crashed on `null.name` after unsubscribe/notify races) | `src/observable/Observable.ts` |
+| `PluginSettings.handleCreateRelayEvent` exposes a `creatingRelay` flag → Relays.svelte button disables with "Creating..." during the async POST; prevents the duplicate-click orphan-relay storm (4 orphans in <2s observed) | `src/components/PluginSettings.svelte`, `src/components/Relays.svelte` |
+| `ManageRelay.svelte` hides the Plan / Upgrade block when the relay is backed by a `self_hosted` provider | `src/components/ManageRelay.svelte` |
+| Seat-count row reads `"N members"` instead of misleading `"N of 0 seats used"` when `relay.user_limit=0` | `src/components/ManageRelay.svelte` |
+| Cleanup: `Relays.svelte` no longer receives the unused `providers` prop | `src/components/PluginSettings.svelte` |
+
+---
+
+## Self-host gotchas
+
+These failure modes aren't plugin bugs per se but cost real time to diagnose. Full list in the [monorepo README](../README.md#self-host-gotchas); the two most common for plugin-side debugging:
+
+1. **`pb_hooks/` bind mount goes stale.** Symptom: `docker exec <ctr> ls /pb/pb_hooks/` shows empty, even though the host directory has files and `docker inspect` shows the correct mount path. Recreate: `docker compose up -d --force-recreate control-plane`.
+2. **Stored auth tokens from deleted server-side records** surface as an unhandled 401 on plugin reload. v0.7.6-beta.1 catches this and forces logout — but the user will see "Stored auth token rejected; logging out" in the console.
+
+---
+
+## Diagnostic checklist for OAuth 400s
+
+If OAuth sign-in 400s:
+
+1. **Final URL is `github.com/...`** → GitHub rejected `redirect_uri`. Edit your GitHub OAuth app's callback URL to exactly `http://<your-pb-host>:8090/api/oauth2-redirect`.
+2. **Final URL is `localhost:8090/_/#/auth/oauth2-redirect-failure`** → PocketBase's built-in redirect handler is running instead of the custom hook. Check `docker exec <ctr> ls /pb/pb_hooks/`; empty = stale bind mount; recreate the container.
+3. **200 but plugin never picks up the code** → the custom hook stores the code in the `code_exchange` collection; confirm the collection exists (it's seeded by `pb_migrations/`).
+
+---
+
+## Release process
+
+Bump `manifest.json`, `manifest-beta.json`, and `versions.json` together, build a production bundle, pre-stage it, tag, push:
+
+```bash
+# bump these three to the new version (e.g. 0.7.6-beta.2)
+#   Relay/manifest.json
+#   Relay/manifest-beta.json
+#   Relay/versions.json
+
+cd Relay && npm run release
+mkdir -p ../release-assets/vX.Y.Z[-beta.N]
+cp main.js manifest.json styles.css ../release-assets/vX.Y.Z[-beta.N]/
+
+cd ..
+git add Relay/manifest*.json Relay/versions.json release-assets/vX.Y.Z[-beta.N]/
+git commit -m "vX.Y.Z — <summary>"
+git tag -a vX.Y.Z -m "vX.Y.Z — <summary>"
+git push origin master vX.Y.Z
+```
+
+The release workflow at `.github/workflows/release.yml` picks up the pre-staged assets (preferred) or falls back to `npm run release` inside CI.
+
+---
+
+## Upstream sync
+
+Pull upstream changes into `Relay/` periodically:
+
+```bash
+# one-time
+git remote add relay-upstream https://github.com/No-Instructions/Relay.git
+
+# every time
+git fetch relay-upstream
+git subtree pull --prefix=Relay relay-upstream main --squash
+```
+
+After each pull, re-apply the fork-unlocks if upstream touched the gated files. The LOCKS.md audit is kept current so each rebase is mechanical; `RECOVERY.md` explains the one-time context loss from the v0.7.5 submodule-flatten incident.
+
+---
+
+## License
+
+- Upstream [No-Instructions/Relay](https://github.com/No-Instructions/Relay) — see `LICENSE` in this directory.
+- Fork modifications — same license, no added warranty.
