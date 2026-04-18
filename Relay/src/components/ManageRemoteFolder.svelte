@@ -126,13 +126,20 @@
 	let syncSettings: SyncSettingsManager | undefined =
 		$folderStore?.syncSettingsManager;
 
+	// Fork unlock (Relay-monorepo-568f): quota===0 is only a paywall trigger
+	// for metered (upstream-hosted) tenants. Unmetered self-hosted relays
+	// ship with quota=0 — treat that as "unlimited" instead of "buy storage",
+	// matching the Storage panel in ManageRelay which already shows
+	// "Unmetered by Relay" in that case.
 	let noStorage = derived(
 		[folderStore, relayRoles],
 		([$folderStore, $relayRoles]) => {
-			return (
-				$relayRoles.find((role) => role.relay === $folderStore?.remote?.relay)
-					?.relay?.storageQuota?.quota === 0
-			);
+			const quota = $relayRoles.find(
+				(role) => role.relay === $folderStore?.remote?.relay,
+			)?.relay?.storageQuota;
+			if (!quota) return false;
+			if (quota.metered === false) return false;
+			return quota.quota === 0;
 		},
 	);
 
