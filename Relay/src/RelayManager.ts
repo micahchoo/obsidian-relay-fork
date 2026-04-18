@@ -37,6 +37,33 @@ import {
 	ObservablePermission,
 } from "./PolicyManager";
 
+// Fork unlock (Relay-955f): PocketBase multi-relation fields with
+// maxSelect>1 arrive as string[] while DAO interfaces type them as
+// string. Downstream `relays.get(array)` / `users.get(array)` returns
+// undefined — callers then synthesise a stub record (invisible-relay
+// symptom) or throw "invalid remote folder". Normalize at the single
+// ingest seam so every reader downstream sees a plain string.
+const PB_RELATION_FIELDS: Record<string, readonly string[]> = {
+	shared_folders: ["relay", "creator"],
+	relay_roles: ["user", "relay"],
+	shared_folder_roles: ["user", "shared_folder"],
+	relay_invitations: ["relay"],
+	subscriptions: ["relay", "user"],
+	storage_quotas: ["relay"],
+	relays: ["creator"],
+};
+
+function normalizePBRelations(record: RecordModel): void {
+	const fields = PB_RELATION_FIELDS[record.collectionName];
+	if (!fields) return;
+	for (const f of fields) {
+		const v = (record as unknown as Record<string, unknown>)[f];
+		if (Array.isArray(v)) {
+			(record as unknown as Record<string, unknown>)[f] = v[0];
+		}
+	}
+}
+
 interface Identified {
 	id: string;
 }
@@ -914,6 +941,7 @@ class Store extends HasLogging {
 		if (!record) {
 			return;
 		}
+		normalizePBRelations(record);
 		let result;
 		const collection = this.collections.get(record.collectionName);
 		if (collection) {
