@@ -1,0 +1,66 @@
+[2026-04-18T03:03:12.966Z] [DEBUG] [LiveTokenStore]: check and refresh tokens
+    at at LiveTokenStore.log (plugin:system3-relay:14020:10)
+[2026-04-18T03:03:12.993Z] [DEBUG] [LiveTokenStore]: Token Store Report:
+Expiry Margin: 5m
+Active Tokens:
+Stale Tokens:
+Queue size: 0
+    at at LiveTokenStore.log (plugin:system3-relay:14020:10)
+[2026-04-18T03:03:31.382Z] [DEBUG] [Patcher]: Starting cleanup of monkeypatches {
+  "count": 2
+}
+    at at _Patcher.cleanup (plugin:system3-relay:28527:10)
+[2026-04-18T03:03:31.383Z] [DEBUG] [Patcher]: Cleaned up monkeypatch {
+  "index": 1,
+  "total": 2
+}
+    at at eval (plugin:system3-relay:28531:14)
+[2026-04-18T03:03:31.384Z] [DEBUG] [Patcher]: Cleaned up monkeypatch {
+  "index": 2,
+  "total": 2
+}
+    at at eval (plugin:system3-relay:28531:14)
+[2026-04-18T03:03:31.384Z] [LOG] [Patcher]: Completed cleanup of monkeypatches {
+  "cleanedCount": 2
+}
+    at at _Patcher.cleanup (plugin:system3-relay:28540:10)
+[2026-04-18T03:03:31.386Z] [DEBUG] [LiveTokenStore]: stopping
+    at at LiveTokenStore.log (plugin:system3-relay:14020:10)
+[2026-04-18T03:03:31.415Z] [WARN] [ObservableMap]: Missing tear down of 1 listeners on remote folders
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.415Z] [WARN] [ObservableMap]: Missing tear down of 8 listeners on relay roles
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.415Z] [WARN] [ObservableMap]: Missing tear down of 2 listeners on folder roles
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.415Z] [WARN] [ObservableMap]: Missing tear down of 1 listeners on roles
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.416Z] [WARN] [ObservableMap]: Missing tear down of 1 listeners on subscriptions
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.416Z] [WARN] [SharedFolders]: Missing tear down of 2 listeners on undefined
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.416Z] [WARN] [RelayAuto]: Missing tear down of 1 listeners on undefined
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.416Z] [WARN] [StorageQuotaAuto]: Missing tear down of 1 listeners on undefined
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.416Z] [WARN] [DerivedMap]: Missing tear down of 3 listeners on remote folders(filter: (folder) => {
+        const onRelay = folder.relayId === this.id;
+        const hasPermissionParents3 = folder.permissionParents.length > 0;
+        return onRelay && hasPermissionParents3;
+      })
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.416Z] [WARN] [DerivedMap]: Missing tear down of 2 listeners on subscriptions(filter: (subscription) => subscription.relayId === this.id)
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.416Z] [WARN] [DerivedMap]: Missing tear down of 1 listeners on relay roles(filter: (role) => {
+    return role.relayId === relay.id;
+  })
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.416Z] [WARN] [ObservablePermission]: Missing tear down of 1 listeners on ObservablePermission
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.416Z] [WARN] [ObservablePermission]: Missing tear down of 1 listeners on ObservablePermission
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.416Z] [WARN] [ObservablePermission]: Missing tear down of 1 listeners on ObservablePermission
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.416Z] [WARN] [ObservablePermission]: Missing tear down of 1 listeners on ObservablePermission
+    at at eval (plugin:system3-relay:12652:14)
+[2026-04-18T03:03:31.416Z] [WARN] [ObservablePermission]: Missing tear down of 1 listeners on ObservablePermission
+    at at eval (plugin:system3-relay:12652:14)

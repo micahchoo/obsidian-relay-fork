@@ -1,0 +1,44 @@
+{
+  "release": {
+    "channel": "stable"
+  },
+  "sharedFolders": [
+    {
+      "path": "! (Copy 4)",
+      "guid": "41fad93e-f6bf-4ff3-9b2b-057fa898da23",
+      "relay": "9170ed4a-e02b-4410-c7de-fc9a25d97b04",
+      "sync": {
+        "images": true,
+        "audio": true,
+        "videos": true,
+        "pdfs": true,
+        "otherTypes": true
+      },
+      "connect": true
+    }
+  ],
+  "endpoints": {
+    "selfHostedUrl": "http://localhost:8090"
+  },
+  "enableDocumentStatus": false,
+  "enableNewLinkFormat": false,
+  "enableDeltaLogging": false,
+  "enableDocumentHistory": false,
+  "enableEditorTweens": false,
+  "enableNetworkLogging": false,
+  "enableCanvasSync": false,
+  "enableVerifyUploads": false,
+  "enableAutomaticDiffResolution": true,
+  "enableDiscordLogin": false,
+  "enableSelfManageHosts": true,
+  "enableToasts": true,
+  "enablePresenceAvatars": true,
+  "enableLiveEmbeds": true,
+  "enablePreviewViewHooks": true,
+  "enableMetadataViewHooks": true,
+  "enableKanbanView": true,
+  "debugging": false,
+  "login": {
+    "provider": "github"
+  }
+}

@@ -1,5 +1,490 @@
 === FINDINGS ===
-[untested-churn] k6-load-test.js:0 -- 1 commits (6mo), no test file
-[untested-churn] k6-smoke-test.js:0 -- 1 commits (6mo), no test file
+[catch-all] Relay/src/AwarenessViewPlugin.ts:108 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/AwarenessViewPlugin.ts:95 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/BackgroundSync.ts:745 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/BackgroundSync.ts:800 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/BackgroundSync.ts:838 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/BackgroundSync.ts:913 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/Canvas.ts:93 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/CanvasPlugin.ts:158 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/CanvasPlugin.ts:170 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/DatabaseTools.ts:126 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/DatabaseTools.ts:166 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/Document.ts:107 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/EndpointManager.ts:126 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/EndpointManager.ts:255 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/EndpointManager.ts:329 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/EndpointManager.ts:394 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/EndpointManager.ts:437 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/EndpointManager.ts:494 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/EndpointManager.ts:600 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/EndpointManager.ts:700 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/EndpointManager.ts:855 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/EndpointManager.ts:909 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/EndpointManager.ts:988 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/LiveViews.ts:1141 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/Patcher.ts:130 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/PolicyManager.ts:202 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/RelayManager.ts:1048 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/RelayManager.ts:1079 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/SharedFolder.ts:1591 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/SharedFolder.ts:1596 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/SharedFolder.ts:286 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/SharedFolder.ts:459 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/SharedFolder.ts:639 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/SyncFile.ts:186 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/SyncFile.ts:205 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/SyncFile.ts:217 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/SyncFile.ts:389 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/SyncFile.ts:393 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/SyncFile.ts:427 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/SyncFile.ts:447 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/SyncFile.ts:484 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/UpdateManager.ts:222 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/UpdateManager.ts:380 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/UpdateManager.ts:73 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/BugReportModalContent.svelte:29 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/BugReportModalContent.svelte:37 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/BugReportModalContent.svelte:45 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/CodeBlock.svelte:24 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/DebugModalContent.svelte:26 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/DebugModalContent.svelte:34 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/DebugModalContent.svelte:42 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/EndpointConfigModalContent.svelte:129 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/EndpointConfigModalContent.svelte:148 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/EndpointConfigModalContent.svelte:164 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/EndpointConfigModalContent.svelte:196 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/IndexedDBAnalysisModalContent.svelte:42 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/IndexedDBAnalysisModalContent.svelte:64 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/LoggedIn.svelte:220 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/LoggedIn.svelte:74 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/LoggedIn.svelte:85 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ManageRelay.svelte:217 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ManageRelay.svelte:313 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ManageRelay.svelte:381 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ManageRemoteFolder.svelte:166 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ManageRemoteFolder.svelte:229 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ManageRemoteFolder.svelte:248 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ManageRemoteFolder.svelte:262 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ManageRemoteFolder.svelte:281 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ManageRemoteFolder.svelte:307 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ManageRemoteFolder.svelte:375 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/RelayConfigBlock.svelte:137 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/Relays.svelte:100 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ReleaseManagerContent.svelte:119 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ReleaseManagerContent.svelte:151 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ReleaseManagerContent.svelte:162 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ReleaseManagerContent.svelte:233 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ReleaseManagerContent.svelte:329 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/SelfHostModalContent.svelte:133 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/SelfHostModalContent.svelte:152 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/SelfHostModalContent.svelte:206 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/SelfHostModalContent.svelte:91 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/ShareFolderModalContent.svelte:150 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/components/UserSelectModalContent.svelte:117 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/customFetch.ts:115 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/customFetch.ts:24 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/debug.ts:172 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/debug.ts:84 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/main.ts:215 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/main.ts:296 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/main.ts:852 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/markdownView/InvalidLinkExtension.ts:201 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/plugins/MetadataRenderer.ts:57 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/plugins/PreviewRenderer.ts:54 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/plugins/ViewHookPlugin.ts:175 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/plugins/ViewHookPlugin.ts:91 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/pocketbase/LocalAuthStore.ts:77 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/ui/FolderCreateModal.ts:156 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/ui/FolderNav.ts:391 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] Relay/src/ui/SettingsTab.ts:43 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] relay-control-plane/pb_hooks/misc.pb.js:88 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] relay-control-plane/pb_hooks/relay_mgmt.pb.js:212 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] relay-control-plane/pb_hooks/token.pb.js:57 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] relay-control-plane/pb_migrations/11_fix_schema_gaps.js:229 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] relay-control-plane/pb_migrations/11_fix_schema_gaps.js:238 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] relay-control-plane/pb_migrations/11_fix_schema_gaps.js:246 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] relay-control-plane/pb_migrations/11_fix_schema_gaps.js:257 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] relay-control-plane/pb_migrations/11_fix_schema_gaps.js:264 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] relay-control-plane/pb_migrations/11_fix_schema_gaps.js:271 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] relay-control-plane/pb_migrations/11_fix_schema_gaps.js:278 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] relay-control-plane/pb_migrations/1_init.js:347 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:10566 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:11345 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:16019 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:17199 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:17227 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:17926 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:19415 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:19432 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:19443 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:19567 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:19601 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:19619 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:28591 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:28716 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:28767 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:28907 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:32777 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:32788 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:47076 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:48840 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:49357 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:54462 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:54531 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:54552 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:56599 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:59463 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:59515 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:59530 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:59540 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:59555 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:59611 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:61183 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:61200 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:61241 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:62165 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:62951 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:65051 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:65085 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:66243 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:66371 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:68313 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:68347 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:68404 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:68467 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:68751 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:68785 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[catch-all] release-assets/v0.7.5/main.js:69258 -- bare catch-all with no rethrow/reject/error-return/logging in body
+[console-only-error] Relay/src/BackgroundSync.ts:914 -- console.error with no UI feedback in surrounding context
+[console-only-error] Relay/src/DatabaseTools.ts:127 -- console.error with no UI feedback in surrounding context
+[console-only-error] Relay/src/components/RelayConfigBlock.svelte:138 -- console.error with no UI feedback in surrounding context
+[console-only-error] Relay/src/components/ReleaseManagerContent.svelte:330 -- console.error with no UI feedback in surrounding context
+[console-only-error] Relay/src/components/ReleaseManagerContent.svelte:331 -- console.error with no UI feedback in surrounding context
+[console-only-error] Relay/src/components/SecretText.svelte:76 -- console.error with no UI feedback in surrounding context
+[console-only-error] Relay/src/customFetch.ts:25 -- console.error with no UI feedback in surrounding context
+[console-only-error] Relay/src/debug.ts:85 -- console.error with no UI feedback in surrounding context
+[console-only-error] Relay/src/debug.ts:87 -- console.error with no UI feedback in surrounding context
+[console-only-error] Relay/src/ui/FolderCreateModal.ts:157 -- console.error with no UI feedback in surrounding context
+[console-only-error] release-assets/v0.7.5/main.js:10567 -- console.error with no UI feedback in surrounding context
+[console-only-error] release-assets/v0.7.5/main.js:11346 -- console.error with no UI feedback in surrounding context
+[console-only-error] release-assets/v0.7.5/main.js:11348 -- console.error with no UI feedback in surrounding context
+[console-only-error] release-assets/v0.7.5/main.js:12859 -- console.error with no UI feedback in surrounding context
+[console-only-error] release-assets/v0.7.5/main.js:38853 -- console.error with no UI feedback in surrounding context
+[console-only-error] release-assets/v0.7.5/main.js:38900 -- console.error with no UI feedback in surrounding context
+[console-only-error] release-assets/v0.7.5/main.js:41298 -- console.error with no UI feedback in surrounding context
+[console-only-error] release-assets/v0.7.5/main.js:44299 -- console.error with no UI feedback in surrounding context
+[console-only-error] release-assets/v0.7.5/main.js:4843 -- console.error with no UI feedback in surrounding context
+[console-only-error] release-assets/v0.7.5/main.js:49358 -- console.error with no UI feedback in surrounding context
+[console-only-error] release-assets/v0.7.5/main.js:68468 -- console.error with no UI feedback in surrounding context
+[console-only-error] release-assets/v0.7.5/main.js:7681 -- console.error with no UI feedback in surrounding context
+[console-only-error] release-assets/v0.7.5/main.js:9048 -- console.error with no UI feedback in surrounding context
+[fire-and-forget] Relay/src/AwarenessViewPlugin.ts:34 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/BackgroundSync.ts:700 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/BackgroundSync.ts:705 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/CAS.ts:26 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/CAS.ts:32 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/CAS.ts:44 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/CAS.ts:50 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/CAS.ts:59 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/CAS.ts:61 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/CAS.ts:71 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/CAS.ts:72 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/CAS.ts:77 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/CAS.ts:83 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/CAS.ts:87 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/CAS.ts:92 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Canvas.ts:144 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Canvas.ts:183 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Canvas.ts:184 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Canvas.ts:194 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Canvas.ts:199 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Canvas.ts:201 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Canvas.ts:217 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Canvas.ts:258 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Canvas.ts:268 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Canvas.ts:273 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/DatabaseTools.ts:104 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/DatabaseTools.ts:25 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/DatabaseTools.ts:99 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/DiskBuffer.ts:76 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Document.ts:309 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Document.ts:310 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Document.ts:320 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Document.ts:325 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Document.ts:327 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Document.ts:343 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Document.ts:367 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Document.ts:390 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/Document.ts:398 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/EndpointManager.ts:654 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/EndpointManager.ts:662 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/EndpointManager.ts:673 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/EndpointManager.ts:689 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/EndpointManager.ts:732 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/EndpointManager.ts:757 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveTokenStore.ts:210 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveTokenStore.ts:217 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveTokenStore.ts:218 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveTokenStore.ts:222 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:1036 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:1084 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:1136 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:1172 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:1177 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:1180 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:1211 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:145 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:169 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:474 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:496 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:497 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:514 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:541 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:542 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:557 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LiveViews.ts:646 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/LoginManager.ts:481 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:1756 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:1846 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:1864 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:1918 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:1929 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:2018 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:2037 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:2050 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:2061 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:2082 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:2091 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:2111 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:2133 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:2149 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:2161 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:2178 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/RelayManager.ts:2195 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SettingsStorage.ts:167 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SettingsStorage.ts:173 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SettingsStorage.ts:191 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SettingsStorage.ts:208 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SettingsStorage.ts:223 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SettingsStorage.ts:236 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SettingsStorage.ts:242 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SettingsStorage.ts:651 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/ShareLinkPlugin.ts:67 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:1186 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:1190 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:1232 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:1330 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:1334 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:1347 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:1372 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:218 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:246 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:406 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:408 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:417 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:502 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:514 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:518 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:527 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:531 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:532 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:588 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:592 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:607 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:612 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SharedFolder.ts:619 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SyncFile.ts:109 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SyncFile.ts:381 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SyncFile.ts:542 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SyncFile.ts:548 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SyncFile.ts:553 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SyncFile.ts:66 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SyncFile.ts:87 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SyncSettings.ts:132 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/SyncSettings.ts:143 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/TextViewPlugin.ts:107 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/TextViewPlugin.ts:131 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/TextViewPlugin.ts:136 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/TextViewPlugin.ts:142 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/UpdateManager.ts:118 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/UpdateManager.ts:129 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/UpdateManager.ts:262 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/UpdateManager.ts:263 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/components/BugReportModalContent.svelte:141 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/components/LoggedIn.svelte:340 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/components/ManageRelay.svelte:438 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/components/ManageRelay.svelte:450 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/components/ManageRelay.svelte:460 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/components/ManageRelay.svelte:495 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/components/ManageRelay.svelte:916 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/components/ManageRelay.svelte:98 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/components/Relays.svelte:333 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/components/ReleaseManagerContent.svelte:575 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/components/TFolderSuggest.svelte:100 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/components/ViewActions.svelte:36 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/components/ViewActions.svelte:43 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/debug.ts:245 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/debug.ts:246 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/actionLine.ts:144 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/actionLine.ts:162 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/actionLine.ts:184 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/actionLine.ts:192 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/actionLine.ts:208 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/actionLine.ts:215 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/actionLine.ts:232 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/actionLine.ts:249 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/actionLine.ts:265 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/actionLine.ts:281 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/actionLine.ts:77 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/differencesView.ts:100 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/differencesView.ts:123 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/differencesView.ts:144 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/differencesView.ts:145 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/differencesView.ts:203 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/differencesView.ts:247 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/differencesView.ts:258 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/differencesView.ts:271 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/differencesView.ts:276 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/differencesView.ts:277 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/differencesView.ts:283 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/differencesView.ts:284 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/differ/differencesView.ts:336 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/flagManager.ts:60 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/hashing.ts:2 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/main.ts:1237 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/main.ts:342 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/main.ts:447 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/main.ts:448 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/main.ts:503 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/main.ts:521 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/main.ts:676 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/main.ts:686 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/main.ts:698 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/main.ts:699 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/main.ts:779 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/main.ts:780 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/plugins/ViewHookPlugin.ts:221 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/sync.ts:21 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/ui/AddToVaultModal.ts:40 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/ui/Banner.ts:47 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/ui/EmbedBanner.ts:44 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/ui/SelfHostModal.ts:30 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/ui/ShareFolderModal.ts:41 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] Relay/src/ui/UserSelectModal.ts:29 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:10239 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:10439 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:10470 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:10489 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:10490 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:11831 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:11938 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:11988 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:12089 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:12290 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:12800 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:13127 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:14632 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:14638 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:14639 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:14642 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:15022 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:17795 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:17869 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:18135 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:18181 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:18590 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:18929 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:19023 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:19559 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:20212 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:20216 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:21044 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:21050 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:21061 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:21067 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:21076 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:21078 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:21087 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:21088 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:21093 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:21099 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:21103 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:21108 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:22002 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:22006 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:22125 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:22129 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:23802 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:28442 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:28660 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:29129 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:29196 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:29197 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:29264 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:29265 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:29273 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:29274 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:29311 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:30745 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:33504 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:33830 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:33863 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:33945 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:33947 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:49004 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:61369 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:64904 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:64976 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:65028 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:65032 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:66165 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:66174 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:68927 -- await with no try/catch or .catch() in nearby context
+[fire-and-forget] release-assets/v0.7.5/main.js:68928 -- await with no try/catch or .catch() in nearby context
+[silent-catch] Relay/src/BackgroundSync.ts:913 -- catch body logs error but never surfaces to user
+[silent-catch] Relay/src/DatabaseTools.ts:126 -- catch body logs error but never surfaces to user
+[silent-catch] Relay/src/DatabaseTools.ts:166 -- catch body logs error but never surfaces to user
+[silent-catch] Relay/src/LiveTokenStore.ts:105 -- catch body logs error but never surfaces to user
+[silent-catch] Relay/src/components/CodeBlock.svelte:24 -- catch body logs error but never surfaces to user
+[silent-catch] Relay/src/components/EndpointConfigModalContent.svelte:196 -- catch body logs error but never surfaces to user
+[silent-catch] Relay/src/components/RelayConfigBlock.svelte:137 -- catch body logs error but never surfaces to user
+[silent-catch] Relay/src/components/ReleaseManagerContent.svelte:329 -- catch body logs error but never surfaces to user
+[silent-catch] Relay/src/components/SecretText.svelte:75 -- catch body logs error but never surfaces to user
+[silent-catch] Relay/src/customFetch.ts:24 -- catch body logs error but never surfaces to user
+[silent-catch] Relay/src/debug.ts:84 -- catch body logs error but never surfaces to user
+[silent-catch] Relay/src/ui/FolderCreateModal.ts:156 -- catch body logs error but never surfaces to user
+[silent-catch] Relay/src/ui/SettingsTab.ts:43 -- catch body logs error but never surfaces to user
+[silent-catch] release-assets/v0.7.5/main.js:10566 -- catch body logs error but never surfaces to user
+[silent-catch] release-assets/v0.7.5/main.js:11345 -- catch body logs error but never surfaces to user
+[silent-catch] release-assets/v0.7.5/main.js:12858 -- catch body logs error but never surfaces to user
+[silent-catch] release-assets/v0.7.5/main.js:14546 -- catch body logs error but never surfaces to user
+[silent-catch] release-assets/v0.7.5/main.js:31304 -- catch body logs error but never surfaces to user
+[silent-catch] release-assets/v0.7.5/main.js:38852 -- catch body logs error but never surfaces to user
+[silent-catch] release-assets/v0.7.5/main.js:49357 -- catch body logs error but never surfaces to user
+[silent-catch] release-assets/v0.7.5/main.js:62337 -- catch body logs error but never surfaces to user
+[silent-catch] release-assets/v0.7.5/main.js:68467 -- catch body logs error but never surfaces to user
+[silent-catch] release-assets/v0.7.5/main.js:7680 -- catch body logs error but never surfaces to user
+[todo-density] Relay/src/ui/FolderNav.ts:0 -- 4 debt markers in single file
+[todo-density] release-assets/v0.7.5/main.js:0 -- 3 debt markers in single file
+[untested-churn] Relay/src/EndpointManager.ts:0 -- 2 commits (6mo), no test file
+[untested-churn] Relay/src/LoginManager.ts:0 -- 2 commits (6mo), no test file
+[untested-churn] Relay/src/PolicyManager.ts:0 -- 2 commits (6mo), no test file
+[untested-churn] Relay/src/RelayManager.ts:0 -- 3 commits (6mo), no test file
+[untested-churn] Relay/src/SyncSettings.ts:0 -- 2 commits (6mo), no test file
+[untested-churn] Relay/src/components/EndpointConfigModalContent.svelte:0 -- 2 commits (6mo), no test file
+[untested-churn] Relay/src/components/LoggedIn.svelte:0 -- 2 commits (6mo), no test file
+[untested-churn] Relay/src/components/ManageRelay.svelte:0 -- 2 commits (6mo), no test file
+[untested-churn] Relay/src/components/ManageRemoteFolder.svelte:0 -- 2 commits (6mo), no test file
+[untested-churn] Relay/src/components/PluginSettings.svelte:0 -- 3 commits (6mo), no test file
+[untested-churn] Relay/src/components/Relays.svelte:0 -- 2 commits (6mo), no test file
+[untested-churn] Relay/src/flags.ts:0 -- 2 commits (6mo), no test file
+[untested-churn] relay-control-plane/pb_migrations/6_fix_users_password_auth.js:0 -- 1 commits (6mo), no test file
+[untested-churn] relay-control-plane/pb_migrations/7_enable_email_auth.js:0 -- 1 commits (6mo), no test file
+[untested-churn] relay-control-plane/pb_migrations/8_allow_user_invitations.js:0 -- 1 commits (6mo), no test file
+[untested-churn] relay-control-plane/pb_migrations/9_allow_user_relay_roles.js:0 -- 1 commits (6mo), no test file
+[untested-churn] relay-control-plane/scripts/mint-server-auth.py:0 -- 1 commits (6mo), no test file
+[untested-churn] release-assets/v0.7.5/main.js:0 -- 1 commits (6mo), no test file
+[untested-churn] release-assets/v0.7.6-beta.1/main.js:0 -- 1 commits (6mo), no test file
 
 === RISK SCORES ===
